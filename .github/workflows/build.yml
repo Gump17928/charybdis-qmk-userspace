@@ -1,0 +1,20 @@
+name: Build QMK firmware
+on: [push, workflow_dispatch]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    name: 'QMK Userspace Build'
+    uses: qmk/.github/.github/workflows/qmk_userspace_build.yml@main
+    with:
+      # Charybdis + Splinktegrated live in BastardKB's fork, not upstream QMK.
+      qmk_repo: Bastardkb/bastardkb-qmk
+      qmk_ref: main
+
+  publish:
+    name: 'QMK Userspace Publish'
+    uses: qmk/.github/.github/workflows/qmk_userspace_publish.yml@main
+    if: always() && !cancelled()
+    needs: build

@@ -1,0 +1,13 @@
+# QMK build output
+.build/
+*.hex
+*.bin
+*.uf2
+*.elf
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
